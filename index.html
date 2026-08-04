@@ -210,8 +210,8 @@ body::before{
 .price{font-family:"IBM Plex Mono",monospace;line-height:1.25}
 .price .amount{display:block;font-size:22px;font-weight:600;color:var(--gold)}
 .price .term{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
-.price .alt{font-size:11px;color:var(--mute);margin-top:2px}
 .price.free .amount{color:var(--surge)}
+.price.tbc .amount{color:var(--white)}
 
 .get{
   margin-left:auto;flex:none;text-decoration:none;
@@ -350,7 +350,7 @@ details p{margin:0;padding:0 18px 17px 44px;font-size:14.5px;color:var(--mute)}
       <div class="step">
         <span class="n">01</span>
         <h4>Pick your script</h4>
-        <p>Prices are per script. Monthly keeps you on the latest build, lifetime is a one-off payment for that script.</p>
+        <p>Prices are per script and every one is a lifetime licence. You pay once, you keep it, and there is nothing to renew or cancel.</p>
       </div>
       <div class="step">
         <span class="n">02</span>
@@ -376,12 +376,12 @@ details p{margin:0;padding:0 18px 17px 44px;font-size:14.5px;color:var(--mute)}
         <p>It varies by script — each one lists the client it runs on before you buy, and the setup guide walks you through it. Most need an up-to-date Java runtime.</p>
       </details>
       <details>
-        <summary>Monthly or lifetime — what's the difference?</summary>
-        <p>Monthly renews and stops when you cancel. Lifetime is one payment for that script and never expires. Both get every update to that script.</p>
+        <summary>Is there a subscription?</summary>
+        <p>No. Every script is a one-off payment and the licence never expires. No monthly billing, nothing to cancel.</p>
       </details>
       <details>
         <summary>Do updates cost extra?</summary>
-        <p>No. Bug fixes and new features for a script you own are included, on either plan.</p>
+        <p>No. Bug fixes and new features for a script you own are included for as long as I maintain it.</p>
       </details>
       <details>
         <summary>Can I run it on more than one account?</summary>
@@ -416,6 +416,15 @@ details p{margin:0;padding:0 18px 17px 44px;font-size:14.5px;color:var(--mute)}
 
 <script>
 
+/* ============================================================================
+   EDIT EVERYTHING BELOW — this is your whole catalogue.
+
+   game     : "osrs" | "rs3"
+   category : "skilling" | "bossing" | "niche"
+   price    : the lifetime price as a number. 0 = free. null = not priced yet.
+   stats    : two short readouts shown at the bottom of the card
+   ========================================================================= */
+
 const CURRENCY = "$";
 const DISCORD  = "https://discord.gg/UUwfkXFcub";   
 
@@ -426,7 +435,7 @@ const BOTS = [
     blurb: "Grand Exchange flipping. Finds the margin, places both sides, re-prices when the book moves.",
     feats: ["Live margin scanner", "Handles noted items", "Settings saved between sessions"],
     stats: [["Profit/hr","1–4m"],["Attention","None"]],
-    price: 7.99, lifetime: 34.99
+    price: 34.99
   },
   {
     name: "Sarachnis Slayer",
@@ -434,7 +443,7 @@ const BOTS = [
     blurb: "Full Sarachnis loop with banking, gear checks and a prayer-flick rotation that doesn't waste points.",
     feats: ["Auto restock and re-gear", "Loot filter by value", "Eats and escapes on low HP"],
     stats: [["Kills/hr","38–46"],["Trip length","6h+"]],
-    price: 9.99, lifetime: 44.99
+    price: 44.99
   },
   {
     name: "Scurrius Farmer",
@@ -442,7 +451,7 @@ const BOTS = [
     blurb: "Low-level boss grinder for Scurrius. Solo instances, food runs, and it knows when to leave.",
     feats: ["Instance handling", "Rat spawn dodging", "Bank presets"],
     stats: [["Kills/hr","24–30"],["Risk","Low"]],
-    price: 6.99, lifetime: 29.99
+    price: 29.99
   },
   {
     name: "Wine Maker",
@@ -450,7 +459,7 @@ const BOTS = [
     blurb: "Grapes and jugs of water into wine, on repeat. One of the fastest Cooking methods in the game.",
     feats: ["Bank-standing, no walking", "Failed-wine handling", "Break profiles built in"],
     stats: [["XP/hr","440k"],["AFK","Medium"]],
-    price: 4.99, lifetime: 19.99
+    price: 19.99
   },
   {
     name: "Account Builder",
@@ -458,7 +467,7 @@ const BOTS = [
     blurb: "Takes a fresh account through tutorial island and a stat plan you set. Walk away, come back to a build.",
     feats: ["Tutorial Island to quest-ready", "Custom stat targets", "Progress log per account"],
     stats: [["Setup","5 min"],["Runtime","Days"]],
-    price: 12.99, lifetime: 59.99
+    price: 59.99
   },
   {
     name: "Rasial",
@@ -466,15 +475,15 @@ const BOTS = [
     blurb: "Necromancy for Rasial, the First Necromancer. Phase-aware, with conjure upkeep and a bail-out.",
     feats: ["Full phase logic", "Soul Split and prayer swaps", "Death-avoidance failsafe"],
     stats: [["Kills/hr","10–13"],["Skill req","High"]],
-    price: 14.99, lifetime: 69.99
+    price: 69.99
   },
    {
     name: "Raksha",
     game: "rs3", category: "bossing",
-    blurb: "Necromancy for Rasial, the First Necromancer. Phase-aware, with conjure upkeep and a bail-out.",
-    feats: ["Full phase logic", "Soul Split and prayer swaps", "Death-avoidance failsafe"],
-    stats: [["Kills/hr","10–13"],["Skill req","High"]],
-    price: 0, lifetime: null
+    blurb: "Solo Raksha, the Shadow Colossus. Tracks the shadow phases and clears the anima pools before they stack.",
+    feats: ["Shadow phase handling", "Anima pool avoidance", "Auto-restock between kills"],
+    stats: [["Kills/hr","7–9"],["Skill req","High"]],
+    price: null
   },
   {
     name: "Arch-Glacor",
@@ -482,7 +491,7 @@ const BOTS = [
     blurb: "Normal-mode Arch-Glacor with configurable mechanics. Good AFK-adjacent money once it's dialled in.",
     feats: ["Mechanic toggles", "Auto-restock from bank", "Kill and loot tracker"],
     stats: [["Kills/hr","14–18"],["Trip length","4h+"]],
-    price: 11.99, lifetime: 54.99
+    price: 54.99
   },
   {
     name: "Kerapac Solo & Duo",
@@ -490,7 +499,7 @@ const BOTS = [
     blurb: "Solo/Duo Kerapac, Wielder of Time. Handles the pillar phase and the stun window without babysitting.",
     feats: ["Pillar phase routing", "Auto-prayer switching", "Instance reset on wipe"],
     stats: [["Kills/hr","9–11"],["Skill req","High"]],
-    price: 0, lifetime: null
+    price: null
   },
   {
     name: "Agility Courses",
@@ -498,7 +507,7 @@ const BOTS = [
     blurb: "Every rooftop and Gnome course, picked automatically for your level. Grabs marks of grace on the way past.",
     feats: ["Auto course selection", "Marks of grace pickup", "Failure recovery"],
     stats: [["XP/hr","55–90k"],["AFK","High"]],
-    price: 4.99, lifetime: 19.99
+    price: 19.99
   },
   {
     name: "Woodcutting Pro",
@@ -506,7 +515,7 @@ const BOTS = [
     blurb: "Trees, banking and world hopping when the spot gets crowded. Tree types set themselves by level.",
     feats: ["Auto tree upgrade by level", "Hops on crowded worlds", "Nest pickup"],
     stats: [["XP/hr","95k"],["AFK","High"]],
-    price: 4.99, lifetime: 19.99
+    price: 19.99
   },
   {
     name: "Herblore Cleaner",
@@ -514,7 +523,7 @@ const BOTS = [
     blurb: "Cleans grimy herbs and makes unfinished potions from your bank. Cheap levels while you're at work.",
     feats: ["Herb and potion modes", "Stops when the bank runs dry", "Full break scheduler"],
     stats: [["XP/hr","330k"],["AFK","Medium"]],
-    price: 4.99, lifetime: 19.99
+    price: 19.99
   },
 ];
 
@@ -540,11 +549,15 @@ function priceBlock(bot){
               <span class="term">No licence needed</span>
             </div>`;
   }
-  const alt = bot.lifetime ? `<div class="alt">${money(bot.lifetime)} lifetime</div>` : "";
+  if (bot.price === null || bot.price === undefined){
+    return `<div class="price tbc">
+              <span class="amount">Ask</span>
+              <span class="term">Price in Discord</span>
+            </div>`;
+  }
   return `<div class="price">
             <span class="amount">${money(bot.price)}</span>
-            <span class="term">per month</span>
-            ${alt}
+            <span class="term">Lifetime licence</span>
           </div>`;
 }
 
@@ -565,7 +578,7 @@ function card(bot){
       </dl>
       <div class="buy">
         ${priceBlock(bot)}
-        <a class="get" href="${DISCORD}">${bot.price === 0 ? "Download" : "Get it"}</a>
+        <a class="get" href="${DISCORD}">${bot.price === 0 ? "Download" : (bot.price == null ? "Enquire" : "Get it")}</a>
       </div>
     </div>`;
   return el;
