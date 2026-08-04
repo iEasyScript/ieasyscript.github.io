@@ -10,9 +10,9 @@
 </p>
 
 <p align="center">
-  <a href="https://ieasyscript.github.io/easybots"><b>Browse the catalogue</b></a>
+  <a href="ieasyscript.github.io/"><b>Browse the catalogue</b></a>
   &nbsp;·&nbsp;
-  <a href="[https://discord.gg/YOUR-INVITE](https://discord.gg/UUwfkXFcub)"><b>Join the Discord</b></a>
+  <a href="[https://discord.gg/UUwfkXFcub](https://discord.gg/UUwfkXFcub)"><b>Join the Discord</b></a>
 </p>
 
 ---
