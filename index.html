@@ -415,18 +415,9 @@ details p{margin:0;padding:0 18px 17px 44px;font-size:14.5px;color:var(--mute)}
 </footer>
 
 <script>
-/* ============================================================================
-   EDIT EVERYTHING BELOW — this is your whole catalogue.
 
-   game     : "osrs" | "rs3"
-   category : "skilling" | "bossing" | "niche"
-   price    : monthly price as a number, or 0 for a free script
-   lifetime : one-off price as a number, or null to hide it
-   stats    : two short readouts shown at the bottom of the card
-   ========================================================================= */
-
-const CURRENCY = "£";                    // change to "$" or "€" if you'd rather
-const DISCORD  = "https://discord.gg/YOUR-INVITE";   // <-- put your invite here
+const CURRENCY = "$";
+const DISCORD  = "https://discord.gg/UUwfkXFcub";   
 
 const BOTS = [
   {
@@ -470,15 +461,23 @@ const BOTS = [
     price: 12.99, lifetime: 59.99
   },
   {
-    name: "Rasial Rotation",
+    name: "Rasial",
     game: "rs3", category: "bossing",
-    blurb: "Necromancy rotation for Rasial, the First Necromancer. Phase-aware, with conjure upkeep and a bail-out.",
+    blurb: "Necromancy for Rasial, the First Necromancer. Phase-aware, with conjure upkeep and a bail-out.",
     feats: ["Full phase logic", "Soul Split and prayer swaps", "Death-avoidance failsafe"],
     stats: [["Kills/hr","10–13"],["Skill req","High"]],
     price: 14.99, lifetime: 69.99
   },
+   {
+    name: "Raksha",
+    game: "rs3", category: "bossing",
+    blurb: "Necromancy for Rasial, the First Necromancer. Phase-aware, with conjure upkeep and a bail-out.",
+    feats: ["Full phase logic", "Soul Split and prayer swaps", "Death-avoidance failsafe"],
+    stats: [["Kills/hr","10–13"],["Skill req","High"]],
+    price: 0.00, lifetime: 0.00
+  },
   {
-    name: "Arch-Glacor Grinder",
+    name: "Arch-Glacor",
     game: "rs3", category: "bossing",
     blurb: "Normal-mode Arch-Glacor with configurable mechanics. Good AFK-adjacent money once it's dialled in.",
     feats: ["Mechanic toggles", "Auto-restock from bank", "Kill and loot tracker"],
@@ -486,12 +485,12 @@ const BOTS = [
     price: 11.99, lifetime: 54.99
   },
   {
-    name: "Kerapac Solo",
+    name: "Kerapac Solo & Duo",
     game: "rs3", category: "bossing",
-    blurb: "Solo Kerapac, Wielder of Time. Handles the pillar phase and the stun window without babysitting.",
+    blurb: "Solo/Duo Kerapac, Wielder of Time. Handles the pillar phase and the stun window without babysitting.",
     feats: ["Pillar phase routing", "Auto-prayer switching", "Instance reset on wipe"],
     stats: [["Kills/hr","9–11"],["Skill req","High"]],
-    price: 13.99, lifetime: 64.99
+    price: 0.00, lifetime: 0.00
   },
   {
     name: "Agility Courses",
@@ -517,14 +516,6 @@ const BOTS = [
     stats: [["XP/hr","330k"],["AFK","Medium"]],
     price: 4.99, lifetime: 19.99
   },
-  {
-    name: "FlipSmart Lite",
-    game: "osrs", category: "niche",
-    blurb: "Manual flipping helper. Reads live Wiki prices and tells you what to buy — you place the offers yourself.",
-    feats: ["Live Wiki price feed", "Flip finder and profit log", "No automation, no ban risk"],
-    stats: [["Price","Free"],["Automation","None"]],
-    price: 0, lifetime: null
-  }
 ];
 
 /* ============================================================================
