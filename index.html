@@ -417,127 +417,45 @@ details p{margin:0;padding:0 18px 17px 44px;font-size:14.5px;color:var(--mute)}
 <script>
 
 /* ============================================================================
-   EDIT EVERYTHING BELOW — this is your whole catalogue.
+   The catalogue lives in data/osrs.json and data/rs3.json — edit those, not
+   this file. One entry looks like:
 
-   game     : "osrs" | "rs3"
-   category : "skilling" | "bossing" | "niche"
-   price    : the lifetime price as a number. 0 = free. null = not priced yet.
-   stats    : two short readouts shown at the bottom of the card
+   {
+     "name":     "Wine Maker",
+     "category": "skilling" | "bossing" | "niche",
+     "blurb":    "One or two sentences shown under the title.",
+     "feats":    ["Up to three short bullet points"],
+     "stats":    [["Label","Value"], ["Label","Value"]],
+     "price":    19.99      the lifetime price as a number
+                 0          shows "Free" and a Download button
+                 null       shows "Ask" and an Enquire button
+   }
+
+   There is no "game" field — the file it lives in decides that.
    ========================================================================= */
 
 const CURRENCY = "$";
-const DISCORD  = "https://discord.gg/UUwfkXFcub";   
+const DISCORD  = "https://discord.gg/UUwfkXFcub";
 
-const BOTS = [
-  {
-    name: "geFlipper",
-    game: "osrs", category: "niche",
-    blurb: "Grand Exchange flipping. Finds the margin, places both sides, re-prices when the book moves.",
-    feats: ["Live margin scanner", "Handles noted items", "Settings saved between sessions"],
-    stats: [["Profit/hr","1–4m"],["Attention","None"]],
-    price: 34.99
-  },
-  {
-    name: "Sarachnis Slayer",
-    game: "osrs", category: "bossing",
-    blurb: "Full Sarachnis loop with banking, gear checks and a prayer-flick rotation that doesn't waste points.",
-    feats: ["Auto restock and re-gear", "Loot filter by value", "Eats and escapes on low HP"],
-    stats: [["Kills/hr","38–46"],["Trip length","6h+"]],
-    price: 44.99
-  },
-  {
-    name: "Scurrius Farmer",
-    game: "osrs", category: "bossing",
-    blurb: "Low-level boss grinder for Scurrius. Solo instances, food runs, and it knows when to leave.",
-    feats: ["Instance handling", "Rat spawn dodging", "Bank presets"],
-    stats: [["Kills/hr","24–30"],["Risk","Low"]],
-    price: 29.99
-  },
-  {
-    name: "Wine Maker",
-    game: "osrs", category: "skilling",
-    blurb: "Grapes and jugs of water into wine, on repeat. One of the fastest Cooking methods in the game.",
-    feats: ["Bank-standing, no walking", "Failed-wine handling", "Break profiles built in"],
-    stats: [["XP/hr","440k"],["AFK","Medium"]],
-    price: 19.99
-  },
-  {
-    name: "Account Builder",
-    game: "osrs", category: "niche",
-    blurb: "Takes a fresh account through tutorial island and a stat plan you set. Walk away, come back to a build.",
-    feats: ["Tutorial Island to quest-ready", "Custom stat targets", "Progress log per account"],
-    stats: [["Setup","5 min"],["Runtime","Days"]],
-    price: 59.99
-  },
-  {
-    name: "Rasial",
-    game: "rs3", category: "bossing",
-    blurb: "Necromancy for Rasial, the First Necromancer. Phase-aware, with conjure upkeep and a bail-out.",
-    feats: ["Full phase logic", "Soul Split and prayer swaps", "Death-avoidance failsafe"],
-    stats: [["Kills/hr","10–13"],["Skill req","High"]],
-    price: 69.99
-  },
-   {
-    name: "Raksha",
-    game: "rs3", category: "bossing",
-    blurb: "Solo Raksha, the Shadow Colossus. Tracks the shadow phases and clears the anima pools before they stack.",
-    feats: ["Shadow phase handling", "Anima pool avoidance", "Auto-restock between kills"],
-    stats: [["Kills/hr","7–9"],["Skill req","High"]],
-    price: null
-  },
-  {
-    name: "Arch-Glacor",
-    game: "rs3", category: "bossing",
-    blurb: "Normal-mode Arch-Glacor with configurable mechanics. Good AFK-adjacent money once it's dialled in.",
-    feats: ["Mechanic toggles", "Auto-restock from bank", "Kill and loot tracker"],
-    stats: [["Kills/hr","14–18"],["Trip length","4h+"]],
-    price: 54.99
-  },
-  {
-    name: "Kerapac Solo & Duo",
-    game: "rs3", category: "bossing",
-    blurb: "Solo/Duo Kerapac, Wielder of Time. Handles the pillar phase and the stun window without babysitting.",
-    feats: ["Pillar phase routing", "Auto-prayer switching", "Instance reset on wipe"],
-    stats: [["Kills/hr","9–11"],["Skill req","High"]],
-    price: null
-  },
-  {
-    name: "Agility Courses",
-    game: "rs3", category: "skilling",
-    blurb: "Every rooftop and Gnome course, picked automatically for your level. Grabs marks of grace on the way past.",
-    feats: ["Auto course selection", "Marks of grace pickup", "Failure recovery"],
-    stats: [["XP/hr","55–90k"],["AFK","High"]],
-    price: 19.99
-  },
-  {
-    name: "Woodcutting Pro",
-    game: "osrs", category: "skilling",
-    blurb: "Trees, banking and world hopping when the spot gets crowded. Tree types set themselves by level.",
-    feats: ["Auto tree upgrade by level", "Hops on crowded worlds", "Nest pickup"],
-    stats: [["XP/hr","95k"],["AFK","High"]],
-    price: 19.99
-  },
-  {
-    name: "Herblore Cleaner",
-    game: "osrs", category: "skilling",
-    blurb: "Cleans grimy herbs and makes unfinished potions from your bank. Cheap levels while you're at work.",
-    feats: ["Herb and potion modes", "Stops when the bank runs dry", "Full break scheduler"],
-    stats: [["XP/hr","330k"],["AFK","Medium"]],
-    price: 19.99
-  },
+const SOURCES = [
+  { game: "osrs", url: "data/osrs.json" },
+  { game: "rs3",  url: "data/rs3.json"  },
 ];
 
 /* ============================================================================
-   Rendering — you shouldn't need to touch anything past this line.
+   Loading and rendering — you shouldn't need to touch anything past this line.
    ========================================================================= */
 
 const GAME_LABEL = { osrs:"OSRS", rs3:"RS3" };
 const state = { game:"all", cat:"all", q:"" };
 
-const grid  = document.getElementById("grid");
-const count = document.getElementById("count");
+let BOTS  = [];
+let phase = "loading";   // "loading" | "ready" | "error"
 
-document.getElementById("chipCount").textContent = BOTS.length;
+const grid      = document.getElementById("grid");
+const count     = document.getElementById("count");
+const chipCount = document.getElementById("chipCount");
+
 document.querySelectorAll("[data-discord]").forEach(a => a.href = DISCORD);
 
 const money = n => CURRENCY + (Number.isInteger(n) ? n : n.toFixed(2));
@@ -592,7 +510,21 @@ const reveal = new IntersectionObserver((entries, obs) => {
   });
 }, { rootMargin: "0px 0px -40px 0px" });
 
+function notice(title, body){
+  grid.innerHTML = `<div class="empty" style="grid-column:1/-1">
+      <b>${title}</b>
+      ${body}
+    </div>`;
+}
+
 function render(){
+  if (phase !== "ready"){
+    count.textContent = "";
+    if (phase === "loading") notice("Loading the catalogue", "One moment.");
+    else notice("Couldn't load the catalogue", "Refresh the page, or ask in the Discord if it keeps happening.");
+    return;
+  }
+
   const q = state.q.trim().toLowerCase();
   const list = BOTS.filter(b =>
     (state.game === "all" || b.game === state.game) &&
@@ -603,10 +535,7 @@ function render(){
   grid.innerHTML = "";
 
   if (!list.length){
-    grid.innerHTML = `<div class="empty" style="grid-column:1/-1">
-        <b>Nothing matches that</b>
-        Clear the search or switch back to All.
-      </div>`;
+    notice("Nothing matches that", "Clear the search or switch back to All.");
   } else {
     list.forEach((bot, i) => {
       const el = card(bot);
@@ -636,7 +565,30 @@ document.getElementById("search").addEventListener("input", e => {
   timer = setTimeout(() => { state.q = e.target.value; render(); }, 120);
 });
 
-render();
+async function loadCatalogue(){
+  render();   // paints the loading notice
+
+  try {
+    const files = await Promise.all(SOURCES.map(async src => {
+      const res = await fetch(src.url, { cache: "no-cache" });
+      if (!res.ok) throw new Error(`${src.url} → ${res.status}`);
+      const list = await res.json();
+      if (!Array.isArray(list)) throw new Error(`${src.url} is not a JSON array`);
+      return list.map(bot => ({ ...bot, game: src.game }));
+    }));
+
+    BOTS  = files.flat();
+    phase = "ready";
+  } catch (err) {
+    console.error("Catalogue failed to load:", err);
+    phase = "error";
+  }
+
+  chipCount.textContent = BOTS.length;
+  render();
+}
+
+loadCatalogue();
 </script>
 </body>
 </html>

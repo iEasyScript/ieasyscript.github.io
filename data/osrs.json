@@ -1,0 +1,50 @@
+[
+  {
+    "name": "geFlipper",
+    "category": "niche",
+    "blurb": "Grand Exchange flipping. Finds the margin, places both sides, re-prices when the book moves.",
+    "feats": ["Live margin scanner", "Handles noted items", "Settings saved between sessions"],
+    "stats": [["Profit/hr", "1–4m"], ["Attention", "None"]],
+    "price": 0
+  },
+  {
+    "name": "Sarachnis Slayer",
+    "category": "bossing",
+    "blurb": "Full Sarachnis loop with banking, gear checks and a prayer-flick rotation that doesn't waste points.",
+    "feats": ["Auto restock and re-gear", "Loot filter by value", "Eats and escapes on low HP"],
+    "stats": [["Kills/hr", "38–46"], ["Trip length", "6h+"]],
+    "price": 0
+  },
+  {
+    "name": "Scurrius Farmer",
+    "category": "bossing",
+    "blurb": "Low-level boss grinder for Scurrius. Solo instances, food runs, and it knows when to leave.",
+    "feats": ["Instance handling", "Rat spawn dodging", "Bank presets"],
+    "stats": [["Kills/hr", "24–30"], ["Risk", "Low"]],
+    "price": 0
+  },
+  {
+    "name": "Wine Maker",
+    "category": "skilling",
+    "blurb": "Grapes and jugs of water into wine, on repeat. One of the fastest Cooking methods in the game.",
+    "feats": ["Bank-standing, no walking", "Failed-wine handling", "Break profiles built in"],
+    "stats": [["XP/hr", "440k"], ["AFK", "Medium"]],
+    "price": 0
+  },
+  {
+    "name": "Woodcutting Pro",
+    "category": "skilling",
+    "blurb": "Trees, banking and world hopping when the spot gets crowded. Tree types set themselves by level.",
+    "feats": ["Auto tree upgrade by level", "Hops on crowded worlds", "Nest pickup"],
+    "stats": [["XP/hr", "95k"], ["AFK", "High"]],
+    "price": 0
+  },
+  {
+    "name": "Herblore Cleaner",
+    "category": "skilling",
+    "blurb": "Cleans grimy herbs and makes unfinished potions from your bank. Cheap levels while you're at work.",
+    "feats": ["Herb and potion modes", "Stops when the bank runs dry", "Full break scheduler"],
+    "stats": [["XP/hr", "330k"], ["AFK", "Medium"]],
+    "price": 0
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Rasial",
+    "category": "bossing",
+    "blurb": "Necromancy for Rasial, the First Necromancer. Phase-aware, with conjure upkeep and a bail-out.",
+    "feats": ["Full phase logic", "Soul Split and prayer swaps", "Death-avoidance failsafe"],
+    "stats": [["Kills/hr", "10–13"], ["Skill req", "High"]],
+    "price": 0
+  },
+  {
+    "name": "Raksha",
+    "category": "bossing",
+    "blurb": "Solo Raksha, the Shadow Colossus. Tracks the shadow phases and clears the anima pools before they stack.",
+    "feats": ["Shadow phase handling", "Anima pool avoidance", "Auto-restock between kills"],
+    "stats": [["Kills/hr", "10+"], ["Skill req", "High"]],
+    "price": 0
+  },
+  {
+    "name": "Arch-Glacor (HM)",
+    "category": "bossing",
+    "blurb": "Hard-mode Arch-Glacor with configurable settings. Good money maker.",
+    "feats": ["Mechanic supported", "Auto-restock from bank", "Kill and loot tracker"],
+    "stats": [["Kills/hr", "14–18"], ["Trip length", "4h+"]],
+    "price": 99.99
+  },
+  {
+    "name": "Kerapac Solo & Duo (HM)",
+    "category": "bossing",
+    "blurb": "Solo/Duo Kerapac, Wielder of Time. Handles the pillar phase and the stun window without babysitting.",
+    "feats": ["Pillar phase routing", "Auto-prayer switching", "Instance reset on wipe"],
+    "stats": [["Kills/hr", "9–11"], ["Skill req", "High"]],
+    "price": 0
+  },
+  {
+    "name": "Gates of Elidinis",
+    "category": "bossing",
+    "blurb": "Easiest skilling boss ever. Mine, jump and loot!",
+    "feats": ["Mechanics supported", "Auto banking", "Loot tracker"],
+    "stats": [["Kills/hr", "9–11"], ["Skill req", "High"]],
+    "price": 0
+  },
+  {
+    "name": "Vorkath (HM)",
+    "category": "bossing",
+    "blurb": "Hard mode Vorkath! Claim those scales and loot the dragon bones. No babysitting required.",
+    "feats": ["Mechanics supported", "Auto banking", "Loot tracker"],
+    "stats": [["Kills/hr", "10+"], ["Skill req", "High"]],
+    "price": null
+  },
+  {
+    "name": "Sanctum of Rebirth (HM)",
+    "category": "bossing",
+    "blurb": "Supports all 3 bosses.",
+    "feats": ["Mechanics supported", "Auto banking", "Loot tracker"],
+    "stats": [["Kills/hr", "9–11"], ["Skill req", "High"]],
+    "price": null
+  }
+]
